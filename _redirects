@@ -1,5 +1,5 @@
 # CS1 Textbook — Short URL Redirects
-# Site: doc.gogoboard.org
+# Site: d.gogoboard.org
 # Format: /path  https://destination  302
 # Use 302 (temporary) so browsers don't cache — allows updating destinations
 

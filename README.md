@@ -1,10 +1,10 @@
-# doc.gogoboard.org — URL Redirect Service
+# d.gogoboard.org — URL Redirect Service
 
-URL redirect service for GoGo Board books and resources. Maps short URLs like `doc.gogoboard.org/ch3-jump-game` to actual destination URLs. Since books are printed, this service lets us update where links point to without changing the printed content.
+URL redirect service for GoGo Board books and resources. Maps short URLs like `d.gogoboard.org/ch3-jump-game` to actual destination URLs. Since books are printed, this service lets us update where links point to without changing the printed content.
 
 ## How It Works
 
-This repo is deployed as a static site on Cloudflare Pages. The `_redirects` file maps short URL paths to destination URLs. When someone visits `doc.gogoboard.org/ch3-jump-game`, Cloudflare reads the mapping and redirects them to the actual destination.
+This repo is deployed as a static site on Cloudflare Pages. The `_redirects` file maps short URL paths to destination URLs. When someone visits `d.gogoboard.org/ch3-jump-game`, Cloudflare reads the mapping and redirects them to the actual destination.
 
 Deployments are automatic — push to `main` and the site updates in about 30 seconds.
 
@@ -36,7 +36,7 @@ Format: `/short-path   https://destination-url   302`
 Write the short URL where readers need to access it:
 
 ```
-doc.gogoboard.org/ch4-model-demo
+d.gogoboard.org/ch4-model-demo
 ```
 
 ### Step 3: Push to GitHub
@@ -47,7 +47,7 @@ git commit -m "Add ch4-model-demo redirect"
 git push
 ```
 
-The site auto-deploys. Test the new link at `https://doc.gogoboard.org/ch4-model-demo`.
+The site auto-deploys. Test the new link at `https://d.gogoboard.org/ch4-model-demo`.
 
 ## How to Change a Destination
 
@@ -85,7 +85,7 @@ Examples: `/ch2-pacman`, `/ch3-jump-game`, `/ch3-race-game`
 ### Custom domain
 
 1. In the Pages project > **Custom domains** > **Set up a custom domain**
-2. Entered `doc.gogoboard.org`
+2. Entered `d.gogoboard.org`
 3. Cloudflare auto-created the CNAME DNS record (since `gogoboard.org` is already managed in Cloudflare)
 4. SSL certificate is automatic
 
