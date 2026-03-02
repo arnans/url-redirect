@@ -3,6 +3,9 @@
 # Format: /path  https://destination  302
 # Use 302 (temporary) so browsers don't cache — allows updating destinations
 
+# Game list pages
+/games            https://github.com/arnans/cs1-public/blob/main/ch02-game-list.md  302
+
 # Chapter 2 — Sensors & Conditions (Activity 2.4: One-Key Games)
 /dino             https://chromedino.com/  302
 /flappy           https://thorium.rocks/games/flappy-bird/  302
