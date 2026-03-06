@@ -3,6 +3,9 @@
 # Format: /path  https://destination  302
 # Use 302 (temporary) so browsers don't cache — allows updating destinations
 
+# Chapter 1 — What is Coding?
+/robot-setup      https://github.com/arnans/cs1-public/blob/main/ch01-robot-setup.md  302
+
 # Game list pages
 /games            https://github.com/arnans/cs1-public/blob/main/ch02-game-list.md  302
 
