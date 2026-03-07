@@ -94,7 +94,7 @@ export async function onRequest(context) {
       height: 100%;
       background: #3b82f6;
       border-radius: 2px;
-      animation: fill 1.5s linear forwards;
+      animation: fill 2s linear forwards;
     }
     @keyframes fill {
       from { width: 0%; }
@@ -126,7 +126,7 @@ export async function onRequest(context) {
   <script>
     setTimeout(function() {
       window.location.href = ${JSON.stringify(dest)};
-    }, 1500);
+    }, 2000);
   </script>
 </body>
 </html>`;
