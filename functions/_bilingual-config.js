@@ -19,4 +19,8 @@ export const BILINGUAL_SLUGS = {
     en: 'https://github.com/arnans/cs1-public/blob/main/isensor-howto.md',
     th: 'https://github.com/arnans/cs1-public/blob/main/isensor-howto-th.md',
   },
+  'codegogo-howto': {
+    en: 'https://github.com/arnans/cs1-public/blob/main/codegogo-howto.md',
+    th: 'https://github.com/arnans/cs1-public/blob/main/codegogo-howto-th.md',
+  },
 };
