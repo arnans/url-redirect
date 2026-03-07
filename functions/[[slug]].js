@@ -21,19 +21,6 @@ export async function onRequest(context) {
 
   const dest = isThai ? BILINGUAL_SLUGS[slug].th : BILINGUAL_SLUGS[slug].en;
 
-  // Debug mode: add ?debug=1 to see what the function detects
-  if (url.searchParams.get('debug')) {
-    return new Response(JSON.stringify({
-      slug,
-      acceptLang,
-      langParam,
-      isThai,
-      dest,
-    }, null, 2), {
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
-
   return new Response(null, {
     status: 302,
     headers: {
