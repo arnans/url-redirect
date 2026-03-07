@@ -6,7 +6,7 @@ URL redirect service for GoGo Board books and resources. Maps short URLs like `d
 
 This repo is deployed on Cloudflare Pages. There are two redirect mechanisms:
 
-1. **Bilingual links** — Handled by `functions/[[slug]].js`. These auto-detect the browser's language (`Accept-Language` header) and redirect to the English or Thai version of GitHub markdown files. Configured in `functions/_bilingual-config.js`.
+1. **Bilingual links** — Handled by `functions/[[slug]].js`. Shows a 2-second interstitial page that auto-redirects to the detected language (EN or TH) with a visible switch link. Language preference is saved in a cookie. Configured in `functions/_bilingual-config.js`.
 
 2. **Regular links** — Handled by the `_redirects` file. Simple static redirects to game sites, Scratch projects, etc.
 
@@ -35,7 +35,7 @@ Add an entry to `functions/_bilingual-config.js`:
 },
 ```
 
-The function auto-detects browser language and redirects accordingly. Users can override with `?lang=th` or `?lang=en`.
+Every visit shows a 2-second interstitial with a language switch link. Language detection priority: `?lang=` param > cookie > `Accept-Language` header > English default. Clicking the switch link saves the preference in a cookie.
 
 ### Option B: Regular link (single destination)
 
@@ -61,8 +61,8 @@ d.gogoboard.org/ch4-model-demo
 ### Step 3: Push to GitHub
 
 ```
-git add _redirects
-git commit -m "Add ch4-model-demo redirect"
+git add _redirects functions/
+git commit -m "Add redirect"
 git push
 ```
 
