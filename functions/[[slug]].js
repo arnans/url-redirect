@@ -30,25 +30,23 @@ export async function onRequest(context) {
   }
 
   const dest = isThai ? BILINGUAL_SLUGS[slug].th : BILINGUAL_SLUGS[slug].en;
-
-  // If ?lang= param or cookie exists, redirect immediately (user already chose)
-  if (langParam || langCookie) {
-    const headers = {
-      'Location': dest,
-      'Cache-Control': 'no-cache, no-store, must-revalidate',
-    };
-    // Set/update session cookie when ?lang= is used
-    if (langParam) {
-      headers['Set-Cookie'] = `lang=${langParam}; Path=/; SameSite=Lax; Max-Age=31536000`;
-    }
-    return new Response(null, { status: 302, headers });
-  }
-
-  // No cookie, no param — show interstitial with auto-redirect + language switch
   const autoLabel = isThai ? 'ไทย' : 'English';
   const switchDest = isThai ? `/${slug}?lang=en` : `/${slug}?lang=th`;
   const switchLabel = isThai ? 'Switch to English' : 'เปลี่ยนเป็นไทย';
 
+  // If ?lang= was explicitly set, save cookie and redirect immediately (no interstitial)
+  if (langParam) {
+    return new Response(null, {
+      status: 302,
+      headers: {
+        'Location': dest,
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Set-Cookie': `lang=${langParam}; Path=/; SameSite=Lax; Max-Age=31536000`,
+      },
+    });
+  }
+
+  // Always show interstitial with auto-redirect + language switch
   const html = `<!DOCTYPE html>
 <html lang="${isThai ? 'th' : 'en'}">
 <head>
