@@ -1,5 +1,11 @@
 import { BILINGUAL_SLUGS } from './_bilingual-config.js';
 
+function getCookie(request, name) {
+  const cookies = request.headers.get('Cookie') || '';
+  const match = cookies.match(new RegExp('(?:^|;\\s*)' + name + '=([^;]*)'));
+  return match ? match[1] : null;
+}
+
 export async function onRequest(context) {
   const url = new URL(context.request.url);
   const slug = url.pathname.replace(/^\//, '');
@@ -9,32 +15,36 @@ export async function onRequest(context) {
     return context.next();
   }
 
-  // Determine language: ?lang= param > Accept-Language > default English
   const langParam = url.searchParams.get('lang');
+  const langCookie = getCookie(context.request, 'lang');
   const acceptLang = (context.request.headers.get('Accept-Language') || '').toLowerCase();
+
+  // Priority: ?lang= param > cookie > Accept-Language > default English
   let isThai;
   if (langParam) {
     isThai = langParam === 'th';
+  } else if (langCookie) {
+    isThai = langCookie === 'th';
   } else {
     isThai = /\bth\b/.test(acceptLang);
   }
 
-  // If ?lang= was explicitly set, redirect immediately (user already chose)
-  if (langParam) {
-    const dest = isThai ? BILINGUAL_SLUGS[slug].th : BILINGUAL_SLUGS[slug].en;
-    return new Response(null, {
-      status: 302,
-      headers: {
-        'Location': dest,
-        'Cache-Control': 'no-cache, no-store, must-revalidate',
-      },
-    });
+  const dest = isThai ? BILINGUAL_SLUGS[slug].th : BILINGUAL_SLUGS[slug].en;
+
+  // If ?lang= param or cookie exists, redirect immediately (user already chose)
+  if (langParam || langCookie) {
+    const headers = {
+      'Location': dest,
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+    };
+    // Set/update session cookie when ?lang= is used
+    if (langParam) {
+      headers['Set-Cookie'] = `lang=${langParam}; Path=/; SameSite=Lax`;
+    }
+    return new Response(null, { status: 302, headers });
   }
 
-  // Otherwise, show brief interstitial with auto-redirect + language switch
-  const destTh = BILINGUAL_SLUGS[slug].th;
-  const destEn = BILINGUAL_SLUGS[slug].en;
-  const autoDest = isThai ? destTh : destEn;
+  // No cookie, no param — show interstitial with auto-redirect + language switch
   const autoLabel = isThai ? 'ไทย' : 'English';
   const switchDest = isThai ? `/${slug}?lang=en` : `/${slug}?lang=th`;
   const switchLabel = isThai ? 'Switch to English' : 'เปลี่ยนเป็นไทย';
@@ -117,7 +127,7 @@ export async function onRequest(context) {
   </div>
   <script>
     setTimeout(function() {
-      window.location.href = ${JSON.stringify(autoDest)};
+      window.location.href = ${JSON.stringify(dest)};
     }, 1500);
   </script>
 </body>
