@@ -4,23 +4,42 @@ URL redirect service for GoGo Board books and resources. Maps short URLs like `d
 
 ## How It Works
 
-This repo is deployed as a static site on Cloudflare Pages. The `_redirects` file maps short URL paths to destination URLs. When someone visits `d.gogoboard.org/ch3-jump-game`, Cloudflare reads the mapping and redirects them to the actual destination.
+This repo is deployed on Cloudflare Pages. There are two redirect mechanisms:
+
+1. **Bilingual links** — Handled by `functions/[[slug]].js`. These auto-detect the browser's language (`Accept-Language` header) and redirect to the English or Thai version of GitHub markdown files. Configured in `functions/_bilingual-config.js`.
+
+2. **Regular links** — Handled by the `_redirects` file. Simple static redirects to game sites, Scratch projects, etc.
 
 Deployments are automatic — push to `main` and the site updates in about 30 seconds.
 
 ## Repo Structure
 
 ```
-_redirects    Redirect mapping (short path → destination URL)
-404.html      Error page for unmatched paths
-README.md     This file
+_redirects                      Static redirects (games, external links)
+404.html                        Error page for unmatched paths
+functions/_bilingual-config.js  EN/TH URL mapping for bilingual links
+functions/[[slug]].js           Language detection function
+README.md                       This file
 ```
 
 ## How to Add a New Redirect
 
-### Step 1: Add a line to `_redirects`
+### Option A: Bilingual link (GitHub markdown with EN + TH versions)
 
-Open `_redirects` and add a new line:
+Add an entry to `functions/_bilingual-config.js`:
+
+```js
+'my-guide': {
+  en: 'https://github.com/arnans/cs1-public/blob/main/my-guide.md',
+  th: 'https://github.com/arnans/cs1-public/blob/main/my-guide-th.md',
+},
+```
+
+The function auto-detects browser language and redirects accordingly. Users can override with `?lang=th` or `?lang=en`.
+
+### Option B: Regular link (single destination)
+
+Add a line to `_redirects`:
 
 ```
 /ch4-model-demo   https://github.com/some-repo/some-file  302

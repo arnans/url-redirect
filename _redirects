@@ -2,17 +2,13 @@
 # Site: d.gogoboard.org
 # Format: /path  https://destination  302
 # Use 302 (temporary) so browsers don't cache — allows updating destinations
+#
+# Bilingual links (robot-setup, games, input-howto, output-howto, isensor-howto)
+# are handled by functions/[[slug]].js — auto-detects browser language (EN/TH)
+# Manual override: add ?lang=th or ?lang=en to the URL
+# To add new bilingual links, edit functions/_bilingual-config.js
 
-# Chapter 1 — What is Coding?
-/robot-setup      https://github.com/arnans/cs1-public/blob/main/ch01-robot-setup.md  302
-
-# Game list pages
-/games            https://github.com/arnans/cs1-public/blob/main/ch02-game-list.md  302
-
-# Chapter 2 — Sensors & Conditions (How-to guides)
-/input-howto      https://github.com/arnans/cs1-public/blob/main/input-howto.md  302
-/output-howto     https://github.com/arnans/cs1-public/blob/main/output-howto.md  302
-/isensor-howto    https://github.com/arnans/cs1-public/blob/main/isensor-howto.md  302
+# Chapter 2 — Sensors & Conditions (How-to guides, monolingual)
 /codegogo-howto   https://github.com/arnans/cs1-public/blob/main/codegogo-howto.md  302
 
 # Chapter 2 — Sensors & Conditions (Activity 2.4: One-Key Games)
