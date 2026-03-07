@@ -9,6 +9,10 @@
 # Game list pages
 /games            https://github.com/arnans/cs1-public/blob/main/ch02-game-list.md  302
 
+# Chapter 2 — Sensors & Conditions (How-to guides)
+/input-howto      https://github.com/arnans/cs1-public/blob/main/input-howto.md  302
+/output-howto     https://github.com/arnans/cs1-public/blob/main/output-howto.md  302
+
 # Chapter 2 — Sensors & Conditions (Activity 2.4: One-Key Games)
 /dino             https://chromedino.com/  302
 /flappy           https://thorium.rocks/games/flappy-bird/  302
