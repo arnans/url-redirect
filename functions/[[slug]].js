@@ -124,9 +124,21 @@ export async function onRequest(context) {
     <a href="${switchDest}" class="switch">${switchLabel}</a>
   </div>
   <script>
-    setTimeout(function() {
-      window.location.href = ${JSON.stringify(dest)};
-    }, 2000);
+    var timer;
+    function startRedirect() {
+      clearTimeout(timer);
+      var bar = document.querySelector('.progress-fill');
+      bar.style.animation = 'none';
+      bar.offsetHeight;
+      bar.style.animation = 'fill 2s linear forwards';
+      timer = setTimeout(function() {
+        window.location.href = ${JSON.stringify(dest)};
+      }, 2000);
+    }
+    startRedirect();
+    window.addEventListener('pageshow', function(e) {
+      if (e.persisted) startRedirect();
+    });
   </script>
 </body>
 </html>`;
