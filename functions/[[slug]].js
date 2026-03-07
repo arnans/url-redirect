@@ -39,7 +39,7 @@ export async function onRequest(context) {
     };
     // Set/update session cookie when ?lang= is used
     if (langParam) {
-      headers['Set-Cookie'] = `lang=${langParam}; Path=/; SameSite=Lax`;
+      headers['Set-Cookie'] = `lang=${langParam}; Path=/; SameSite=Lax; Max-Age=31536000`;
     }
     return new Response(null, { status: 302, headers });
   }
