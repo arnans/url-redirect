@@ -23,4 +23,12 @@ export const BILINGUAL_SLUGS = {
     en: 'https://github.com/arnans/cs1-public/blob/main/codegogo-howto.md',
     th: 'https://github.com/arnans/cs1-public/blob/main/codegogo-howto-th.md',
   },
+  'code-download-run-howto': {
+    en: 'https://github.com/arnans/cs1-public/blob/main/code-download-run-howto.md',
+    th: 'https://github.com/arnans/cs1-public/blob/main/code-download-run-howto-th.md',
+  },
+  'touch-extension-howto': {
+    en: 'https://github.com/arnans/cs1-public/blob/main/touch-extension-howto.md',
+    th: 'https://github.com/arnans/cs1-public/blob/main/touch-extension-howto-th.md',
+  },
 };
