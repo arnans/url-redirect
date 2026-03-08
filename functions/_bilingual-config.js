@@ -1,34 +1,9 @@
-export const BILINGUAL_SLUGS = {
-  'robot-setup': {
-    en: 'https://github.com/arnans/cs1-public/blob/main/ch01-robot-setup.md',
-    th: 'https://github.com/arnans/cs1-public/blob/main/ch01-robot-setup-th.md',
-  },
-  'games': {
-    en: 'https://github.com/arnans/cs1-public/blob/main/ch02-game-list.md',
-    th: 'https://github.com/arnans/cs1-public/blob/main/ch02-game-list-th.md',
-  },
-  'input-howto': {
-    en: 'https://github.com/arnans/cs1-public/blob/main/input-howto.md',
-    th: 'https://github.com/arnans/cs1-public/blob/main/input-howto-th.md',
-  },
-  'output-howto': {
-    en: 'https://github.com/arnans/cs1-public/blob/main/output-howto.md',
-    th: 'https://github.com/arnans/cs1-public/blob/main/output-howto-th.md',
-  },
-  'isensor-howto': {
-    en: 'https://github.com/arnans/cs1-public/blob/main/isensor-howto.md',
-    th: 'https://github.com/arnans/cs1-public/blob/main/isensor-howto-th.md',
-  },
-  'codegogo-howto': {
-    en: 'https://github.com/arnans/cs1-public/blob/main/codegogo-howto.md',
-    th: 'https://github.com/arnans/cs1-public/blob/main/codegogo-howto-th.md',
-  },
-  'code-download-run-howto': {
-    en: 'https://github.com/arnans/cs1-public/blob/main/code-download-run-howto.md',
-    th: 'https://github.com/arnans/cs1-public/blob/main/code-download-run-howto-th.md',
-  },
-  'touch-extension-howto': {
-    en: 'https://github.com/arnans/cs1-public/blob/main/touch-extension-howto.md',
-    th: 'https://github.com/arnans/cs1-public/blob/main/touch-extension-howto-th.md',
-  },
-};
+// Bilingual links are currently disabled — all links use _redirects instead.
+// To re-enable bilingual support, add entries here in the format:
+//   'slug': {
+//     en: 'https://github.com/arnans/cs1-public/blob/main/slug.md',
+//     th: 'https://github.com/arnans/cs1-public/blob/main/slug-th.md',
+//   },
+// The Cloudflare function (functions/[[slug]].js) will auto-detect browser language
+// and show an interstitial page with a language switch option.
+export const BILINGUAL_SLUGS = {};
